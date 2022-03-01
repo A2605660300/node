@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>诸暨市政务服务办公室</title>
+</head>
+
+<body>
+    <div></div>
+</body>
+<script>
+    //var会变量提升(能获取到a，不能拉出a的值)
+    // if(false){
+    //     var a=123
+    // }
+    // console.log(a)
+
+    //let const是块级作用域，不会导致变量提升（尽量使用const 适合函数式编程 性能好一些）
+
+
+    //-------------------------------------------------------------------------------------
+
+    //解构
+
+    // const [a,b,c]=[1,2,3]
+    //a=1,b=2,c=3
+    // const {a,b,c}={a:1,b:2}
+    //a=1,b=2
+
+
+    //字符串扩展
+    // const zfc='123'
+
+    // const w=cesi`asd${zfc}asd`
+    // // console.log(`asd${zfc}asd`)
+    // function cesi(zfc){
+    //     console.log(zfc)
+    // }
+
+
+    //字符串新增api
+    //includes() 查找是否包含在字符串里，返回布尔
+    //startsWith() 字符头查找，返回布尔
+    //endsWith()    字符尾查找，返回布尔
+
+
+    //-------------------------------------------------------------------------------------
+    //对象原型
+    const eat = {
+        getEtf() {
+            return 'chi'
+        }
+    }
+
+    const drink = {
+        getDrink() {
+            return 'he'
+        }
+    }
+
+    // let cesi=Object.create(eat)   //指定cesi的原型为eat
+    // console.log(cesi.getEtf())
+    // console.log(Object.getPrototypeOf(cesi))
+
+    // Object.setPrototypeOf(cesi,drink) //指定cesi的原型为drink
+    // console.log(cesi.getDrink())
+
+    // let cesi={
+    //     __proto__:eat
+    // }
+    // console.log(cesi.getEtf())
+    // cesi. __proto__=drink
+    // console.log(cesi.getDrink())
+    // let cesi={
+    //     __proto__:eat,
+    //     getEtf() {
+    //         return super.getEtf()+ 'chi1'
+    //     }
+
+    // }
+    // console.log(cesi.getEtf())
+
+
+    //class
+    // class fu{
+    //     constructor(age){
+    //         this.age=age
+    //     }
+    //     tell(){
+    //         console.log(`年龄是${this.age}`)
+    //     }
+    // }
+    // let item=new fu(25)
+    // item.tell()
+
+    // //man继承fu,里面要写
+    // class man extends fu{
+    //     constructor(age){
+    //         super(age)
+    //         this.arr=[]
+    //     }
+    //     set menu(data){
+    //         this.arr.push(data)
+    //     }
+    //     get menu(){
+    //         return this.arr
+    //         console.log(this.arr)
+    //     }
+    //     tell(){
+    //         super.tell()
+    //     }
+    //     static init(){
+    //         console.log('静态属性，只能被自身调用，不能继承，子类实例化对象不能调用')
+    //     }
+    // }
+    // let items=new man(25)
+    // items.tell()
+    // items.menu='增加'
+    // console.log(items.menu)
+
+
+    //-------------------------------------------------------------------------------------
+    //箭头函数和this
+    // window.bb=2
+    // const a={
+    //     bb: 1,
+    //     cc: function(){
+    //         console.log(this.bb)
+    //     },
+    //     dd:()=>{
+    //         console.log(this.bb)
+    //     }
+    // }
+    // a.cc()
+    // a.dd()
+
+
+    //循环    
+    // let arr=[1,2,3]
+    // for(let v in arr){
+    //     console.log(v)
+    // }
+    // for(let v of arr){
+    //     console.log(v)
+    // }
+
+
+    //-------------------------------------------------------------------------------------
+    //set  类似数组，是构造函数，需要new，成员唯一（去重）
+     let arr=new Set('临兵斗者')
+     arr.add('言')
+     arr.add('言')  //set会去重
+     console.log(arr)
+     console.log(arr.size) //长度
+     console.log(arr.has('言')) //查找，返回布尔
+     arr.delete('言')
+     arr.clear() //清空
+     //-------------------------------------------------------------------------------------
+    //map  类似对象，是构造函数，需要new，key可以是对象，方法和set一样
+
+</script>
+<script>
+    //------------------------------------------------------>
+    // const arr = [1, 2, 3, 4]
+    // //判断数组是否存在
+    // console.log(arr.indexOf(1) >= 0)
+    // console.log(arr.includes(1)) //es7新api
+    // console.log(2 ** 3)
+    // console.log(Math.pow(2, 3))
+
+
+    //------------------------------------------------------>
+    //async await 可以时停
+    // async function f() {
+    //     await Promise.reject('出错了');
+    //     console.log(123) // 不会执行
+    //     await Promise.resolve('hello world'); // 不会执行
+    // }
+    // f()
+
+    //------------------------------------------------------>
+    // function fn1() {
+    //     return new Promise((res) => {
+    //         setTimeout(() => {
+    //             res('fn1')
+    //         }, 2000)
+    //     })
+    // }
+
+    // function fn2() {
+    //     return new Promise((res) => {
+    //         setTimeout(() => {
+    //             res('fn2')
+    //         }, 3000)
+    //     })
+    // }
+
+    // //顺序执行
+    // async function f() {
+    //     console.time('f')
+    //     await fn1();
+    //     await fn2();
+    //     console.timeEnd('f')
+    // }
+    // f()
+
+    // //并行
+    // async function f1() {
+    //     console.time('f1')
+    //     await Promise.all([fn1(), fn2()])
+    //     console.timeEnd('f1')
+    // }
+
+    // //并行
+    // async function f2() {
+    //     console.time('f2')
+    //     let fooPromise = fn1();
+    //     let barPromise = fn2();
+    //     let foo = await fooPromise;
+    //     let bar = await barPromise;
+    //     console.timeEnd('f2')
+    // }
+    // f1()
+    // f2()
+
+    //------------------------------------------------------>
+    //Object.entries 遍历对象的键值
+    // const obj = {
+    //     name: null,
+    //     age: '23'
+    // }
+    // if (obj.name == null) {
+    //     delete obj.name
+    // }
+
+    // console.log(obj)
+    // console.log(Object.entries(obj))
+    // console.log(Object.entries('qwerty'))
+
+    //------------------------------------------------------>
+    //字符串操作
+    // console.log('qwewqe'.padStart(8, '123')) //12qwewqe 头部拼接 第一个参数为增加后的长度，第二个为添加的字符串，长度不够自动截去添加的字符串 过短返回qwewqe 过长重复填充
+    // console.log('qwewqe'.padEnd(8, '123')) //qwewqe12 尾部拼接 第一个参数为增加后的长度，第二个为添加的字符串，长度不够自动截去添加的字符串
+    // console.log(Object.getOwnPropertyDescriptor(obj)) //对象描述
+
+    // for (let val of obj) {
+    //     console.log(val)
+    // }
+
+    // fn().then().catch().finally()
+
+    // function fn1() {
+    //     return new Promise((resolve, reject) => {
+    //         resolve('对对对')
+    //         // reject('错错错')
+    //     })
+    // }
+    // fn1().then(res => {
+    //     console.log(1234)
+    // }).catch(err => {
+    //     console.log(1235)
+    // }).finally(res => {
+    //     console.log(123)
+    // })
+
+    // function b() {
+
+    // }
+
+    // const toSlug = input => encodeURIComponent(
+    //     input.split(' ')
+    //     .map(str => str.toLowerCase())
+    //     .join('-')
+    // );
+
+    const toSlug = input => encodeURIComponent(join('-')(map(toLowerCase)(split(' ')(input))));
+    console.log(toSlug('JS Cheerleader'))
+</script>
+
+</html>
+
+
+
+
+
